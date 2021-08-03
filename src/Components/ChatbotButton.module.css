@@ -1,0 +1,16 @@
+.chatbot__btn{
+    border: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transform: translate(-20px,-20px);
+    background-color: #773131;
+    width: 100px;
+    height: 100px;
+    border-radius: 75px;
+}
+
+.chatbot__btn:hover{
+    cursor: pointer;
+    background-color: #742424;
+}
