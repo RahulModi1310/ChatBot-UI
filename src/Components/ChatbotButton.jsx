@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-
-import ChatbotModal from "./ChatbotModal";
-
+import ChatbotModel from "./ChatbotModel";
 import classes from "./ChatbotButton.module.css"
 
 const ChatbotButton = (props)=>{
@@ -13,13 +11,13 @@ const ChatbotButton = (props)=>{
         setShowChatBot(!showChatBot);
     }
 
-    const resetShowHnadler = ()=>{
+    const resetShowHandler = ()=>{
         setShowChatBot(false);
     }
 
     return (
         <React.Fragment>
-            {showChatBot && <ChatbotModal onClick={resetShowHnadler} conversation={conversation} setConversation={setConversation}/>}
+            {showChatBot && <ChatbotModel onClick={resetShowHandler} conversation={conversation} setConversation={setConversation}/>}
             <button className={classes.chatbot__btn} onClick={chatBotHandler}></button>
         </React.Fragment>
     )

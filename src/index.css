@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.chats{
+  display: flex;
+  border:2px solid;
+  font-size: 20px;
+}
+.chats:nth-child(even){
+  align-self: flex-end;
+  padding: 10px;
+  background-color: rgb(141, 231, 171);
+  color: rgb(7, 92, 167);
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.chats:nth-child(odd){
+  align-self: flex-start;
+  padding: 10px;
+  background-color: rgb(11, 160, 247);
+  color: rgb(233, 229, 30);
+  margin-top: 5px;
+  border-radius: 10px;
+}
