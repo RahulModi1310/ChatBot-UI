@@ -17,8 +17,10 @@ const ChatbotButton = (props)=>{
 
     return (
         <React.Fragment>
-            {showChatBot && <ChatbotModel onClick={resetShowHandler} conversation={conversation} setConversation={setConversation}/>}
-            <button className={classes.chatbot__btn} onClick={chatBotHandler}></button>
+            {showChatBot && <ChatbotModel onShow={showChatBot} onClick={resetShowHandler} conversation={conversation} setConversation={setConversation}/>}
+            <button className={classes.chatbot__btn} onClick={chatBotHandler}>
+            <i className={`material-icons ${classes.icon} ${showChatBot && classes.chatbot__animate}`} >chat</i>
+            </button>
         </React.Fragment>
     )
 };

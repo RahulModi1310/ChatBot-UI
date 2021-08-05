@@ -14,9 +14,9 @@ const ChatbotModel = (props)=>{
 
     const queryHandler = (event)=>{
         event.preventDefault();
-        if(query!=""){
+        if(query!==""){
         setMessages(messages=>[...messages,query]);
-    }
+        }
         let body = {
             "sender":"some_user",
             "message":query
@@ -26,14 +26,15 @@ const ChatbotModel = (props)=>{
             url:"http://127.0.0.1:5005/webhooks/rest/webhook",
             data:body
         }).then((response)=>{
-            if(response.data.length!=0){
-            let reply = response.data[0].text;
+            if(response.data.length!==0){
+            let reply = response.data[0].custom.text;
             setMessages(messages=>[...messages,reply]);
-        }
-        else{
-            alert("Message cannot be empty");
-        }
+            }
+            else{
+                alert("Message cannot be empty");
+            }
         })
+        setQuery("");
     }
 
     function setText(text){
@@ -48,7 +49,7 @@ const ChatbotModel = (props)=>{
 
                 <div className={classes.chatbot__title}>
                     <h1>TINKERING Lab</h1>
-                    <p>Chatbot</p>
+                    <h2>Chatbot</h2>
                 </div>
 
                 <div className={classes.chatbot__chatBlock}>
@@ -63,11 +64,10 @@ const ChatbotModel = (props)=>{
                             placeholder="Type your message here..."
                             value={query}
                             onChange={onChangeHandler}
+                            required
                         />
 
-                        <button type="submit" className={classes.send__btn}>
-                            <i className="material-icons">send</i>
-                        </button>
+                        <button type="submit" className={classes.send__btn}><i className={`material-icons`}>send</i></button>
                     </form>
 
                 </div>
