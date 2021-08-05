@@ -34,6 +34,9 @@ const ChatbotModel = (props)=>{
             if(newLink!=undefined){
                 setLink(newLink);
             }
+            else{
+                setLink("");
+            }
             setMessages(messages=>[...messages,reply]);    
             
             }
@@ -75,7 +78,7 @@ const ChatbotModel = (props)=>{
 
                     <div id={classes.conversation} className={classes.chatBlock__conversations}>
                         {messages.map(setText)}
-                        <a style={{backgroundColor:"pink",marginTop:10, width:"fit-content"}} href={link}>{link}</a>
+                    {link!=""?<a style={{marginTop:10}} href={link} target="_blank">Click here</a>:null}
                     </div>
 
                     <form className={classes.chatBlock__form} onSubmit={queryHandler} >
