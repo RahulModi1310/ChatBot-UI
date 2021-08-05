@@ -33,7 +33,6 @@ code {
   align-self: flex-end;
   min-width: 20%;
   max-width: 80%;
-  word-wrap: break-word;
   border: none;
   background-color: rgb(231, 229, 83);
   color: black;

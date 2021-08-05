@@ -32,7 +32,7 @@ const ChatbotModel = (props)=>{
             let reply = response.data[0].custom.text;
             let newLink = response.data[0].custom.link;
             if(newLink!=undefined){
-                // reply+= newLink;
+                setLink(newLink);
             }
             setMessages(messages=>[...messages,reply]);    
             
@@ -55,7 +55,7 @@ const ChatbotModel = (props)=>{
             console.log("This is "+ link);
             return <div className="chats" key={key++}>
             <p>{text}</p>
-
+            
         </div>
          
         }
@@ -75,6 +75,7 @@ const ChatbotModel = (props)=>{
 
                     <div id={classes.conversation} className={classes.chatBlock__conversations}>
                         {messages.map(setText)}
+                        <a style={{backgroundColor:"pink",marginTop:10, width:"fit-content"}} href={link}>{link}</a>
                     </div>
 
                     <form className={classes.chatBlock__form} onSubmit={queryHandler} >
