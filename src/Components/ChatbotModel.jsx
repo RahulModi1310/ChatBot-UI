@@ -20,7 +20,7 @@ const ChatbotModel = (props)=>{
         event.preventDefault();
         setLink("");
         if(query!==""){
-        setMessages(messages=>[...messages,query]);
+            setMessages(messages=>[...messages,query]);
         }
         let body = {
             "sender":"some_user",
@@ -34,11 +34,13 @@ const ChatbotModel = (props)=>{
             if(response.data.length!==0){
                 let reply = response.data[0].custom.text;
                 let newLink = response.data[0].custom.link;
-            if(newLink!==undefined){
-                
-            }
-            setMessages(messages=>[...messages,reply]);    
-            
+                if(newLink!==undefined){
+                    setLink(newLink);
+                }
+                else{
+                    setLink("");
+                }
+                setMessages(messages=>[...messages,reply]);    
             }
             else{
                 alert("Message cannot be empty");
@@ -58,6 +60,7 @@ const ChatbotModel = (props)=>{
             console.log("This is "+ link);
             return <div className="chats" key={key++}>
             <p>{text}</p>
+            
         </div>
          
         }
@@ -85,6 +88,7 @@ const ChatbotModel = (props)=>{
 
                     <div id={classes.conversation} className={classes.chatBlock__conversations}>
                         {messages.map(setText)}
+                    {link!==""?<a style={{marginTop:10}} href={link} target="_blank">Click here</a>:null}
                     </div>
 
                     <form className={classes.chatBlock__form} onSubmit={queryHandler} >
