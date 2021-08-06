@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import axios from "axios";
+
 import classes from "./ChatbotModal.module.css"
+import logo from "../assets/logo.png"
+
 
 var key =0;
 const ChatbotModel = (props)=>{
@@ -29,10 +32,10 @@ const ChatbotModel = (props)=>{
             data:body
         }).then((response)=>{
             if(response.data.length!==0){
-            let reply = response.data[0].custom.text;
-            let newLink = response.data[0].custom.link;
-            if(newLink!=undefined){
-                // reply+= newLink;
+                let reply = response.data[0].custom.text;
+                let newLink = response.data[0].custom.link;
+            if(newLink!==undefined){
+                
             }
             setMessages(messages=>[...messages,reply]);    
             
@@ -45,7 +48,7 @@ const ChatbotModel = (props)=>{
     }
 
     function setText(text){
-        if(link==""){
+        if(link===""){
             return <div className="chats" key={key++}>
         <p>{text}</p>
 
@@ -55,7 +58,6 @@ const ChatbotModel = (props)=>{
             console.log("This is "+ link);
             return <div className="chats" key={key++}>
             <p>{text}</p>
-
         </div>
          
         }
@@ -67,8 +69,16 @@ const ChatbotModel = (props)=>{
             <div className={classes.chatbot__container}>
 
                 <div className={classes.chatbot__title}>
-                    <h1>TINKERING Lab</h1>
-                    <h2>Chatbot</h2>
+                    <div className={classes.logo}>
+                        <img src={logo} alt="TINKERING lab logo" />
+                    </div>
+                    <div>
+                        <h1>TINKERING Lab</h1>
+                        <h2>Chatbot</h2>
+                    </div>
+                    <button className={classes.chatbot__close}>
+                        <i className="material-icons" onClick={props.onClick}>close</i>
+                    </button>
                 </div>
 
                 <div className={classes.chatbot__chatBlock}>
@@ -86,7 +96,7 @@ const ChatbotModel = (props)=>{
                             required
                         />
 
-                        <button type="submit" className={classes.send__btn}><i className={`material-icons`}>send</i></button>
+                        <button type="submit" className={classes.send__btn}><i className={`material-icons`}>navigate_next</i></button>
                     </form>
 
                 </div>

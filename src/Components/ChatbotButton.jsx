@@ -11,16 +11,13 @@ const ChatbotButton = (props)=>{
         setShowChatBot(!showChatBot);
     }
 
-    const resetShowHandler = ()=>{
-        setShowChatBot(false);
-    }
-
     return (
         <React.Fragment>
-            {showChatBot && <ChatbotModel onShow={showChatBot} onClick={resetShowHandler} conversation={conversation} setConversation={setConversation}/>}
+            {!showChatBot ? <ChatbotModel onClick={chatBotHandler} conversation={conversation} setConversation={setConversation}/> :
             <button className={classes.chatbot__btn} onClick={chatBotHandler}>
-            <i className={`material-icons ${classes.icon} ${showChatBot && classes.chatbot__animate}`} >chat</i>
-            </button>
+                <i className={`material-icons ${classes.icon}`} >expand_more</i>
+                Chat with bot
+            </button>}
         </React.Fragment>
     )
 };

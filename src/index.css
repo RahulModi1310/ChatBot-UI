@@ -9,7 +9,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 .chats{
   display: flex;
@@ -21,13 +21,13 @@ code {
   min-width: 20%;
   max-width: 80%;
   padding: 10px;
-  background-color: rgb(224, 193, 193);
+  background-color: #BEC1C9;
   color: black;
-  margin-top: 5px;
+  margin-top: 10px;
   border: none;
-  border-top-right-radius: 10px;
+  border-top-right-radius: 15px;
   word-wrap: break-word;
-  border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 15px;
 }
 .chats:nth-child(odd){
   align-self: flex-end;
@@ -35,11 +35,11 @@ code {
   max-width: 80%;
   word-wrap: break-word;
   border: none;
-  background-color: rgb(231, 229, 83);
+  background-color: #BBD3F5;
   color: black;
-  margin-top: 5px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  margin-top: 10px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
   padding: 2%;
   padding-left: 4%;
 }
