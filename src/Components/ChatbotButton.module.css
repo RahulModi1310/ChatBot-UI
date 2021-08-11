@@ -24,6 +24,9 @@
     cursor: pointer;
     background-color: #3268ff;
 }
+  
+
+
 
 @media (max-width: 600px){
     .chatbot__btn{

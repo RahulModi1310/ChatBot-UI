@@ -11,34 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
-.chats{
-  display: flex;
-  border:2px solid;
-  font-size: 20px;
-}
-.chats:nth-child(even){
-  align-self: flex-start;
-  min-width: 20%;
-  max-width: 80%;
-  padding: 10px;
-  background-color: #BEC1C9;
-  color: black;
-  margin-top: 10px;
-  border: none;
-  border-top-right-radius: 15px;
-  word-wrap: break-word;
-  border-bottom-left-radius: 15px;
-}
-.chats:nth-child(odd){
-  align-self: flex-end;
-  min-width: 20%;
-  max-width: 80%;
-  border: none;
-  background-color: #BBD3F5;
-  color: black;
-  margin-top: 10px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  padding: 2%;
-  padding-left: 4%;
-}
