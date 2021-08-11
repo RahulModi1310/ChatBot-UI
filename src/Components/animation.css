@@ -4,33 +4,56 @@
 
 .fade-enter-active {
     opacity: 1;
-    transition: all 500ms ease-out;
+    transition: all 300ms ease-out;
 }
 
 .fade-exit {
     opacity: 1;
+    width: fit-content;
+    height: 60px;
 }
 
 .fade-exit-active {
     opacity: 0;
-    transition: all 500ms ease-out;
+    transition: all 300ms ease-out;
 }
 
+
+/* chatmodal animations */
 .fademodal-enter {
-    opacity: 0;
+    transform: translate(50%, 50%) scale(0);
 }
 
 .fademodal-enter-active {
-    opacity: 1;
-    transition: all 500ms ease-out;
+    transform: translate(0, 0) scale(1);
+    transition: all 300ms ease;
 }
 
 .fademodal-exit {
-    opacity: 1;
-    transform: scale(1);
+    transform: translate(0, 0) scale(1);
 }
 
 .fademodal-exit-active {
-    opacity: 0;
-    transition: all 500ms ease-out;
+    transform: translate(50%,50%) scale(0);
+    transition: all 300ms ease;
+}
+
+@media (max-width: 600px){
+    .fademodal-enter {
+        transform: translate(0, 0) scale(0);
+    }
+    
+    .fademodal-enter-active {
+        transform: translate(-50%, -50%) scale(1);
+        transition: all 300ms ease;
+    }
+    
+    .fademodal-exit {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .fademodal-exit-active {
+        transform: translate(0,0) scale(0);
+        transition: all 300ms ease;
+    }
 }
