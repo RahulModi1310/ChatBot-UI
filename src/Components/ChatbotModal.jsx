@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { CSSTransition } from 'react-transition-group';
 
@@ -13,6 +13,22 @@ import logo from "../assets/logo.png"
 const ChatbotModel = (props)=>{
     const [query,setQuery] = useState("");
 
+    const nodeRef = useRef(null);
+    const ref = useRef(null);
+    const messagesEndRef = useRef(null)
+
+    //to scroll down on every new chat
+    useEffect(() => {
+        console.log(messagesEndRef.current)
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scroll(
+                { 
+                    top: messagesEndRef.current.scrollHeight, 
+                    behavior: 'smooth' 
+                });
+        }
+    }, [props.chatMessages]);
+
     //To store input from user with each keystrokes
     const onChangeHandler = (event)=>{
         event.preventDefault();
@@ -23,42 +39,37 @@ const ChatbotModel = (props)=>{
     const queryHandler = (event)=>{
         event.preventDefault();
         if(query!==""){
-            props.setChatMessages(messages=>[...messages,{
-                text:query
-            }]);
-        }
-        let body = {
-            "sender":"some_user",
-            "message":query
-        }
-        axios({
-            method:"POST",
-            url:"http://127.0.0.1:5005/webhooks/rest/webhook",
-            data:body
-        }).then((response)=>{
-            if(response.data.length!==0){
-                //storing response in an array with all prev chats
-                console.log(response);
-                props.setChatMessages(messages=>[...messages,{
-                    text : response.data[0].custom.text,
-                    link : response.data[0].custom.link
-                }]);    
+            let body = {
+                "sender":"some_user",
+                "message":query
             }
-            else{
+            axios({
+                method:"POST",
+                url:"http://127.0.0.1:5005/webhooks/rest/webhook",
+                data:body
+            }).then((response)=>{
+                if(response.data.length!==0){
+                    //storing response in an array with all prev chats
+                    props.setChatMessages(messages=>[...messages,{
+                        text:query
+                    },{
+                        ...response.data[0].custom
+                    }]);    
+                }
+                else{
+                    props.setChatMessages(messages=>[...messages,{
+                        text : "Sorry I can't help you with that.",
+                    }]);
+                }
+            }).catch(err=>{
                 props.setChatMessages(messages=>[...messages,{
-                    text : "Sorry I can't help you with that.",
+                    text : "Sorry, something went wrong...",
                 }]);
-            }
-        }).catch(err=>{
-            props.setChatMessages(messages=>[...messages,{
-                text : "Sorry, something went wrong...",
-            }]);
-        })
+            })
+        }
         setQuery("");
     }
 
-    const nodeRef = React.useRef(null);
-    const ref = React.useRef(null);
     return(
         <React.Fragment>
             <CSSTransition
@@ -94,7 +105,7 @@ const ChatbotModel = (props)=>{
 
                     <div className={classes.chatbot__chatBlock}>
 
-                        <div id={classes.conversation} className={classes.chatBlock__conversations}>
+                        <div ref={messagesEndRef} id={classes.conversation} className={classes.chatBlock__conversations}>
                             {/* to show all conversations */}
                             <ChatBlock chats={props.chatMessages}/>
                         </div>
@@ -107,7 +118,9 @@ const ChatbotModel = (props)=>{
                                 onChange={onChangeHandler}
                                 required
                             />
-                            <button type="submit" className={classes.send__btn}><i className={`material-icons`}>navigate_next</i></button>
+                            <button type="submit" className={classes.send__btn}>
+                                <i className={`material-icons`}>navigate_next</i>
+                            </button>
                         </form>
 
                     </div>

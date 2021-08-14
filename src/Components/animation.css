@@ -10,7 +10,6 @@
 .fade-exit {
     opacity: 1;
     width: fit-content;
-    height: 60px;
 }
 
 .fade-exit-active {
