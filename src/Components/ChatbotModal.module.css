@@ -1,6 +1,6 @@
 /* custom scroll bar */
 #conversation::-webkit-scrollbar {
-    width: 0.6em;
+    width: 0.6rem;
 }
    
 #conversation::-webkit-scrollbar-thumb {
@@ -23,7 +23,7 @@
     flex-direction: column;
     width: 450px;
     max-width: 450px;
-    height: 75vh;
+    height: 80vh;
     background-color: white;
     border: 1px solid #8A8989;
     border-radius: 25px;
@@ -103,6 +103,7 @@
     padding: 0px 1rem;
     margin: 1.25rem 0px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .chatBlock__form{
@@ -147,6 +148,7 @@
 }
 
 @media (max-width: 600px){
+
     .chatbot__container{
         top: 50%;
         left: 50%;
@@ -154,9 +156,23 @@
         max-width: 95vw;
         height: 80vh;
     }
+
     .chatbot__title{
         font-size: 0.9rem;
     }
+
+    .chatbot__chatBlock{
+        padding: 0.5rem;
+    }
+
+    .chatBlock__conversations{
+        margin: 0.7rem 0px;
+    }
+
+    #conversation::-webkit-scrollbar {
+        width: 0.35rem;
+    }
+
 }
 
 @media (max-width: 400px){
