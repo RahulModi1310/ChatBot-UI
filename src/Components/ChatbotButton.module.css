@@ -1,36 +1,26 @@
 .chatbot__btn{
     border: none;
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     min-width: fit-content;
-    height: 60px;
     display: flex;
     align-items: center;
     background-color: #4B7AF9;
     border-radius: 40px;
     color: white;
-    font-size: 20px;
-    padding: 0px 20px 0px 15px;
+    font-size: 1rem;
+    padding: 5px 10px 5px 5px;
     box-shadow: 4px 4px 3px  #909090;
 }
 
 .icon{
     color: white;
-    font-size: 30px;
+    font-size: 1.25rem;
+    transform: rotate(180deg);
 }
 
 .chatbot__btn:hover{
     cursor: pointer;
     background-color: #3268ff;
-}
-  
-
-
-
-@media (max-width: 600px){
-    .chatbot__btn{
-        width: 80px;
-        height: 80px;
-    }
 }

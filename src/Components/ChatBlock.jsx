@@ -6,7 +6,7 @@ const ChatBlock = (props) => {
   return (
     <React.Fragment>
       <div className={classes.chats}>
-        <p className={classes.startText}>
+        <p className={classes.initial_payload}>
           Hey, I am <span>TinkerBud</span>, how may I help you?
         </p>
       </div>

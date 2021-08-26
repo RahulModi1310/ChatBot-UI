@@ -1,4 +1,5 @@
 /* custom scroll bar */
+/* Styled considering hight>1000px and width>600px */
 #conversation::-webkit-scrollbar {
     width: 0.6rem;
 }
@@ -9,23 +10,22 @@
 }
 
 .chatbot__backdrop{
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     background-color: rgba(105, 105, 105, 0.8);
 }
 
 .chatbot__container{
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
     display: flex;
     flex-direction: column;
-    width: 450px;
-    max-width: 450px;
-    height: 80vh;
+    width: 400px;
+    max-width: 400px;
+    height: 60vh;
     background-color: white;
-    border: 1px solid #8A8989;
     border-radius: 25px;
     box-shadow: 7px 10px 4px rgba(0, 0, 0, 0.3);
     overflow: hidden;
@@ -38,7 +38,7 @@
     background-image: linear-gradient(to right, #4065C8, #5778CB);
     padding: 1rem;
     color: white;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .logo{
@@ -46,15 +46,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     background-color: white;
     border-radius: 45px;
 }
 
 .logo img{
     position: relative;
-    max-width: 60px;
+    max-width: 55px;
 }
 
 .chatbot__title h1{
@@ -91,7 +91,7 @@
     flex-direction: column;
     justify-content: flex-end;
     flex-wrap: nowrap;
-    padding: 1rem;
+    padding: 0.25rem 1rem;
     height: 100%;
     overflow: hidden;
 }
@@ -99,9 +99,6 @@
 .chatBlock__conversations{
     display: flex;
     flex-direction: column;
-    overflow: auto;
-    padding: 0px 1rem;
-    margin: 1.25rem 0px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -109,18 +106,18 @@
 .chatBlock__form{
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    justify-content: center;
+    margin: 10px 0px;
 }
 
 .chatBlock__form input{
     display: inline-block;
-    width: 85%;
-    height: 60px;
-    padding: 15px;
+    width: 100%;
+    padding: 10px 10px;
     border: none;
     border-radius: 30px 0px 0px 30px;
     background-color:#e4e4e4d0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: 2px solid #b2b2b2 ;
 }
 
@@ -132,7 +129,7 @@
 .send__btn{
     border: none;
     background-color: #0054A1;
-    width: 60px;
+    width: 50px;
     align-self: stretch;
     color: white;
 }
@@ -158,7 +155,7 @@
     }
 
     .chatbot__title{
-        font-size: 0.9rem;
+        font-size: 0.7rem;
     }
 
     .chatbot__chatBlock{
@@ -177,20 +174,32 @@
 
 @media (max-width: 400px){
     .chatbot__title{
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     .logo{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         background-color: white;
         border-radius: 30px;
     }
     
     .logo img{
         position: relative;
-        max-width: 40px;
+        max-width: 30px;
+    }
+}
+
+@media (max-height: 800px) {
+     .chatbot__container{
+        height: 80vh;
+    }
+}
+
+@media (max-height: 600px) {
+     .chatbot__container{
+        height: 90vh;
     }
 }
