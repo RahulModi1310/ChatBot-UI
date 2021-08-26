@@ -13,7 +13,6 @@ const ChatBlock = (props) => {
       {props.chats.map((chat, i) => {
         return (
           <div className={classes.chats} key={i}>
-            {chat.ishelpfull && <p>{`${chat.ishelpfull}`}</p>}
             <p>{`${chat.text}`}</p>
             {chat.links &&
               chat.links.map((l, k) => {
@@ -23,6 +22,7 @@ const ChatBlock = (props) => {
                   </p>
                 );
               })}
+            {chat.ishelpfull && <p>{`${chat.ishelpfull}`}</p>}
           </div>
         );
       })}
