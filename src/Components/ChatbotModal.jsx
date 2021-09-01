@@ -7,14 +7,12 @@ import IsLoading from "./IsLoading";
 
 import classes from "./ChatbotModal.module.css";
 import "./animation.css";
-import logo from "../assets/logo.png";
+import logo from "../../static/ChatBot/logo.png";
 
 const ChatbotModel = (props) => {
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const nodeRef = useRef(null);
-  const ref = useRef(null);
   const messagesEndRef = useRef(null);
 
   //to scroll down on every new chat
@@ -72,6 +70,8 @@ const ChatbotModel = (props) => {
             },
             botResponse,
           ]);
+
+          // Creating a log for qustion asked
           axios({
             method: "POST",
             url: "http://192.168.251.229:8000/chatbot/",
@@ -102,31 +102,25 @@ const ChatbotModel = (props) => {
   return (
     <React.Fragment>
       <CSSTransition
-        nodeRef={nodeRef}
         unmountOnExit
         in={props.in}
         timeout={500}
         classNames="fade"
       >
-        <div
-          ref={nodeRef}
-          className={classes.chatbot__backdrop}
-          onClick={props.onClick}
-        />
+        <div className={classes.chatbot__backdrop} onClick={props.onClick} />
       </CSSTransition>
       <CSSTransition
-        nodeRef={ref}
         unmountOnExit
         in={props.in}
         timeout={500}
         classNames="fademodal"
       >
-        <div ref={ref} className={classes.chatbot__container}>
-          <div className={classes.chatbot__title}>
+        <div className={classes.chatbot__container}>
+          <div className={classes.chatbot__header}>
             <div className={classes.logo}>
               <img src={logo} alt="TINKERING lab logo" />
             </div>
-            <div>
+            <div className={classes.chatbot__headerText}>
               <h1>TINKERING Lab</h1>
               <h2>Chatbot</h2>
             </div>
