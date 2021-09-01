@@ -3,6 +3,7 @@ import axios from "axios";
 import { CSSTransition } from "react-transition-group";
 
 import ChatBlock from "./ChatBlock";
+import IsLoading from "./IsLoading";
 
 import classes from "./ChatbotModal.module.css";
 import "./animation.css";
@@ -10,6 +11,7 @@ import logo from "../assets/logo.png";
 
 const ChatbotModel = (props) => {
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const nodeRef = useRef(null);
   const ref = useRef(null);
@@ -34,6 +36,7 @@ const ChatbotModel = (props) => {
   //To get response for entered query
   const queryHandler = (event) => {
     event.preventDefault();
+    setIsLoading(true);
     if (query !== "") {
       let body = {
         sender: "some_user",
@@ -45,35 +48,43 @@ const ChatbotModel = (props) => {
         data: body,
       })
         .then((response) => {
+          let botResponse;
           if (response.data.length !== 0) {
-            //storing response in an array with all prev chats
-            let botResponse = { ...response.data[0].custom };
+            botResponse = { ...response.data[0].custom };
             if (response.data[1]) {
               botResponse = {
                 ...botResponse,
                 ishelpfull: response.data[1].custom.text,
               };
             }
-            props.setChatMessages((messages) => [
-              ...messages,
-              {
-                text: query,
-              },
-              botResponse,
-            ]);
           } else {
-            props.setChatMessages((messages) => [
-              ...messages,
-              {
-                text: query,
-              },
-              {
-                text: "Sorry I can't help you with that.",
-              },
-            ]);
+            botResponse = {
+              text: "Sorry, I can't help you with that. :(",
+            };
           }
+
+          //storing response in an array with all prev chats
+          setIsLoading(false);
+          props.setChatMessages((messages) => [
+            ...messages,
+            {
+              text: query,
+            },
+            botResponse,
+          ]);
+          axios({
+            method: "POST",
+            url: "http://192.168.251.229:8000/chatbot/",
+            data: {
+              question_text: query,
+              bot_response: JSON.stringify(botResponse),
+            },
+          })
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error));
         })
         .catch((err) => {
+          setIsLoading(false);
           props.setChatMessages((messages) => [
             ...messages,
             {
@@ -133,7 +144,11 @@ const ChatbotModel = (props) => {
               className={classes.chatBlock__conversations}
             >
               {/* to show all conversations */}
-              <ChatBlock chats={props.chatMessages} />
+              {isLoading ? (
+                <IsLoading />
+              ) : (
+                <ChatBlock chats={props.chatMessages} />
+              )}
             </div>
 
             <form className={classes.chatBlock__form} onSubmit={queryHandler}>
